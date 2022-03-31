@@ -384,6 +384,7 @@ class GameScene extends Phaser.Scene {
     game.bounce = this.sound.add("jump");
     game.bubbleHit = this.sound.add("bubbleHit");
     game.click = this.sound.add("click");
+    game.jump = this.sound.add("jump");
 
     // Play music
     game.theme.play();
