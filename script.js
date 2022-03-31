@@ -1030,7 +1030,7 @@ class GameScene extends Phaser.Scene {
       if (player1.jump) {
         if (game.cursors.up.isDown && game.player.body.touching.down) {
           // Audio
-          game.bounce.play();
+          // game.bounce.play();
 
           // Set velocity
           game.player1.setVelocityY(-200);
