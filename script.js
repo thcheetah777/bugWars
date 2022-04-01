@@ -2,7 +2,7 @@
 // Game obj
 const game = {
   // High score
-  high: localStorage.getItem("high"),
+  high: localStorage.getItem("high") ? localStorage.getItem("high") : 0,
 
   // Level
   level: 1,
@@ -226,20 +226,19 @@ class GameScene extends Phaser.Scene {
     this.load.image("rocketBlaster", "assets/imgs/rocket.png");
     this.load.image("bubble", "assets/imgs/bubble.png");
 
-    // Audio
+    // SFX
     this.load.audio("pew", "assets/audio/pew.wav");
     this.load.audio("explosion", "assets/audio/explosion.wav");
-
-    // Music
-    this.load.audio("theme1", "assets/audio/theme1.ogg");
-    this.load.audio("theme2", "assets/audio/theme2.ogg");
-    this.load.audio("theme3", "assets/audio/theme3.mp3");
-
     this.load.audio("death", "assets/audio/death.wav");
     this.load.audio("win", "assets/audio/win.ogg");
     this.load.audio("powerup", "assets/audio/powerup.ogg");
     this.load.audio("rocket", "assets/audio/rocket.mp3");
     this.load.audio("jump", "assets/audio/jump.ogg");
+
+    // Music
+    this.load.audio("theme1", "assets/audio/theme1.ogg");
+    this.load.audio("theme2", "assets/audio/theme2.ogg");
+    this.load.audio("theme3", "assets/audio/theme3.mp3");
 
     // BugRepellent hits bubble
     this.load.audio("bubbleHit", "assets/audio/bubbleHit.ogg");
@@ -377,6 +376,7 @@ class GameScene extends Phaser.Scene {
       game.theme = this.sound.add("theme2");
     }
 
+    // Add SFXs
     game.death = this.sound.add("death");
     game.win = this.sound.add("win");
     game.powerup = this.sound.add("powerup");
@@ -975,7 +975,7 @@ class GameScene extends Phaser.Scene {
         // Destroy powerup
         powerup.destroy();
 
-        // Set vars
+                // Set vars
         player2.protection = true;
         game.bubble2.visible = true;
       });
@@ -1027,7 +1027,7 @@ class GameScene extends Phaser.Scene {
 
       // Jump powerup
       if (player1.jump) {
-        if (game.cursors.up.isDown && game.player.body.touching.down) {
+        if (game.cursors.up.isDown && player1.body.touching.down) {
           // Audio
           game.bounce.play();
 
@@ -1039,7 +1039,7 @@ class GameScene extends Phaser.Scene {
       // Multiplayer
       if (game.multiplayer) {
         if (player2.jump) {
-          if (game.cursors.up.isDown && game.player.body.touching.down) {
+          if (game.cursors.up.isDown && player2.body.touching.down) {
             // Audio
             game.bounce.play();
 
