@@ -26,13 +26,13 @@ const player1 = {
   playerSpeed: 160,
 
   // Rocket powerup
-  rocket: false,
+  rocket: true,
 
   // Jump powerup
-  jump: false,
+  jump: true,
 
   // Bubble powerup
-  protection: false,
+  protection: true,
 
   // Hit to bubble
   bubbleHits: 3,
@@ -1028,12 +1028,12 @@ class GameScene extends Phaser.Scene {
 
       // Jump powerup
       if (player1.jump) {
-        if (game.cursors.up.isDown && player1.body.touching.down) {
+        if (game.cursors.up.isDown && game.player1.body.touching.down) {
           // Audio
-          // game.bounce.play();
+          game.bounce.play();
 
           // Set velocity
-          game.player1.setVelocityY(-200);
+          game.player1.setVelocityY(-500);
         }
       }
 
