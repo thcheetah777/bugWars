@@ -981,6 +981,43 @@ class GameScene extends Phaser.Scene {
         game.bubble2.visible = true;
       });
     }
+    this.time.addEvent({
+    	delay: 100,
+	callback: () => {
+		// Rocket powerup
+		if (player1.rocket && !player1.blasterReload) {
+		  // Create bugRepellent sprite
+		  // Left
+		  game.bugRepellent.create(game.player1.x - 10, game.player1.y - 10, "bugRepellent").setGravityY(-1600).setScale(1.5).setVelocityX(-10);
+
+		  // Right
+		  game.bugRepellent.create(game.player1.x + 10, game.player1.y - 10, "bugRepellent").setGravityY(-1600).setScale(1.5).setVelocityX(10);
+
+		  // Center
+		  game.bugRepellent.create(game.player1.x, game.player1.y - 10, "bugRepellent").setGravityY(-1600).setScale(1.5);
+
+		  // Play sound
+		  game.rocketBlast.play();
+
+		  // Set reload
+		  player1.blasterReload = true;
+		} else if (player1.rocket && player1.blasterReload) {
+		  // Audio
+		  game.click.play();
+
+		  // Set reload
+		  player1.blasterReload = false;
+		} else if (!player1.rocket) {
+		  // Create bugRepellent sprite
+		  game.bugRepellent.create(game.player1.x, game.player1.y, "bugRepellent").setGravityY(-1600).setScale(1);
+
+		  // Play sound
+		  game.pew.play();
+		}
+	},
+	    callbackScope: this,
+	    repeat: -1
+    });
   }
 
   // Update
