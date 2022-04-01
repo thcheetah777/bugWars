@@ -982,7 +982,7 @@ class GameScene extends Phaser.Scene {
       });
     }
     this.time.addEvent({
-    	delay: 100,
+    	delay: 10,
 	callback: () => {
 		// Rocket powerup
 		if (player1.rocket && !player1.blasterReload) {
