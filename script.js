@@ -384,6 +384,7 @@ class GameScene extends Phaser.Scene {
     game.bounce = this.sound.add("jump");
     game.bubbleHit = this.sound.add("bubbleHit");
     game.click = this.sound.add("click");
+    game.jump = this.sound.add("jump");
 
     // Play music
     game.theme.play();
@@ -1029,7 +1030,7 @@ class GameScene extends Phaser.Scene {
       if (player1.jump) {
         if (game.cursors.up.isDown && player1.body.touching.down) {
           // Audio
-          game.bounce.play();
+          // game.bounce.play();
 
           // Set velocity
           game.player1.setVelocityY(-200);
